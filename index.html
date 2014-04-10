@@ -1,0 +1,12 @@
+<script src="jquery.js"></script>
+<script src="timer.js"></script>
+
+<div id="timer" data-minutes-left="200"></div>
+
+<script>
+$(function(){
+    var refreshRateInSeconds = 10
+    $('#timer').
+      startTheTimer({ refreshrate: (refreshRateInSeconds*1000) })
+})
+</script>
