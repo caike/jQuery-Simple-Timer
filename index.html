@@ -1,8 +1,20 @@
 <script src="jquery.js"></script>
 <script src="timer.js"></script>
-
 <div id="timer" data-minutes-left="200"></div>
-
+<style>
+.hours {
+  float: left;
+}
+.minutes {
+  float: left;
+}
+.seconds {
+  float: left;
+}
+.clearDiv {
+  clear: both;
+}
+</style>
 <script>
 $(function(){
     var refreshRateInSeconds = 10

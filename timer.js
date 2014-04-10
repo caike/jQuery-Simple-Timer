@@ -44,17 +44,19 @@ $.fn.startTheTimer = function(options) {
 
   var setFinalValue = function(finalValues, element) {
     element.find('.seconds').text(finalValues.pop());
-    element.find('.minutes').text(finalValues.pop());
-    element.find('.hours').text(finalValues.pop());
+    element.find('.minutes').text(finalValues.pop() + ':');
+    element.find('.hours').text(finalValues.pop() + ':');
     element.find('.days').text(finalValues.pop());
   };
 
   var startCountdown = function(element, options) {
     var endTime = element.data('minutes-left');
     var refreshRate = options['refreshRate'] || 1000;
+    var timeLeft = endTime - currentTime();
+
+    setFinalValue(formatTimeLeft(timeLeft), element);
 
     setInterval((function() {
-      var timeLeft;
       timeLeft = endTime - currentTime();
       setFinalValue(formatTimeLeft(timeLeft), element);
     }), refreshRate);
@@ -69,17 +71,21 @@ $.fn.startTheTimer = function(options) {
 
     var hours = document.createElement('div')
     hours.className = 'hours';
+
+    var clearDiv = document.createElement('div')
+    clearDiv.className = 'clearDiv';
     
     return timerBoxElement.
       append(hours).
       append(minutes).
-      append(seconds);
+      append(seconds).
+      append(clearDiv);
   }
 
   this.each(function(_index, timerBox) {
     var timerBoxElement = $(timerBox);
     createSubDivs(timerBoxElement);
-    startCountdown(timerBoxElement, options);
+    return startCountdown(timerBoxElement, options);
   });
 };
 
