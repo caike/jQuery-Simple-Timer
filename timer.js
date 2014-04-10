@@ -50,8 +50,9 @@ $.fn.startTheTimer = function(options) {
   };
 
   var startCountdown = function(element, options) {
-    var endTime = element.data('minutes-left');
+    var secondsLeft = parseInt(element.data('seconds-left'), 10);
     var refreshRate = options['refreshRate'] || 1000;
+    var endTime = secondsLeft + currentTime();
     var timeLeft = endTime - currentTime();
 
     setFinalValue(formatTimeLeft(timeLeft), element);
