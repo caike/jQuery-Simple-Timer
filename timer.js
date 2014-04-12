@@ -1,4 +1,4 @@
-$.fn.startTheTimer = function(options) {
+$.fn.startTimer = function(options) {
 
   var that = this;
 

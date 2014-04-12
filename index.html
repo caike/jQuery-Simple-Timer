@@ -1,6 +1,6 @@
 <script src="jquery.js"></script>
 <script src="timer.js"></script>
-<div id="timer" data-seconds-left=300"></div>
+<div id="timer" data-seconds-left=6300"></div>
 <style>
 .hours {
   float: left;
@@ -21,8 +21,8 @@ $(function(){
       alert('Complete!');
       location.reload();
     }
-    $('#timer').startTheTimer( { onComplete: complete  });
+    $('#timer').startTimer( { onComplete: complete  });
     //var refreshRateInSeconds = 1000;
-    //startTheTimer({ refreshRate: (refreshRateInSeconds*1000), onComplete: complete })
+    //startTimer({ refreshRate: (refreshRateInSeconds*1000), onComplete: complete })
 })
 </script>
