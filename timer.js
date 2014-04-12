@@ -1,5 +1,7 @@
 $.fn.startTheTimer = function(options) {
 
+  var that = this;
+
   var currentTime = function() {
     return Math.round((new Date()).getTime() / 1000);
   };
@@ -34,8 +36,7 @@ $.fn.startTheTimer = function(options) {
 
     if (+hours === 0 && +minutes === 0 && +seconds === 0) {
       setTimeout((function() {
-        // reloads current url when timer is up
-        location.reload();
+        that.onComplete();
       }), 200);
     } else {
       return [lpad(days), lpad(hours), lpad(minutes), lpad(seconds)];
@@ -43,6 +44,10 @@ $.fn.startTheTimer = function(options) {
   };
 
   var setFinalValue = function(finalValues, element) {
+    if(typeof finalValues == 'undefined'){
+      return false;
+    }
+
     element.find('.seconds').text(finalValues.pop());
     element.find('.minutes').text(finalValues.pop() + ':');
     element.find('.hours').text(finalValues.pop() + ':');
@@ -50,8 +55,13 @@ $.fn.startTheTimer = function(options) {
   };
 
   var startCountdown = function(element, options) {
+    options = options || {};
+
+    // defaults to reloading the page once timer is up
+    that.onComplete = options.onComplete || function(){ return location.reload() };
+
     var secondsLeft = parseInt(element.data('seconds-left'), 10);
-    var refreshRate = options['refreshRate'] || 1000;
+    var refreshRate = options.refreshRate || 1000;
     var endTime = secondsLeft + currentTime();
     var timeLeft = endTime - currentTime();
 
