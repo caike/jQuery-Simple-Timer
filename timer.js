@@ -46,7 +46,7 @@
 
       if (+hours === 0 && +minutes === 0 && +seconds === 0) {
         setTimeout((function() {
-          that.onComplete();
+          that.trigger('complete');
         }), 200);
       } else {
         return [lpad(days), lpad(hours), lpad(minutes), lpad(seconds)];
@@ -61,14 +61,24 @@
       element.find('.seconds').text(finalValues.pop());
       element.find('.minutes').text(finalValues.pop() + ':');
       element.find('.hours').text(finalValues.pop() + ':');
-      element.find('.days').text(finalValues.pop());
+    };
+
+    var clearTimer = function(element){
+      element.find('.seconds').text('00');
+      element.find('.minutes').text('00:');
+      element.find('.hours').text('00:');
     };
 
     var startCountdown = function(element, options) {
       options = options || {};
 
-      // defaults to reloading the page once timer is up
-      that.onComplete = options.onComplete || function(){ return location.reload(); };
+      var intervalId = null;
+      var defaultComplete = function(){
+        clearInterval(intervalId);
+        return clearTimer(element);
+      };
+
+      that.onComplete = options.onComplete || defaultComplete;
 
       var secondsLeft = parseInt(element.data('seconds-left'), 10);
       var refreshRate = options.refreshRate || 1000;
@@ -77,7 +87,7 @@
 
       setFinalValue(formatTimeLeft(timeLeft), element);
 
-      setInterval((function() {
+      intervalId = setInterval((function() {
         timeLeft = endTime - currentTime();
         setFinalValue(formatTimeLeft(timeLeft), element);
       }), refreshRate);
@@ -108,6 +118,11 @@
       createSubDivs(timerBoxElement);
       return startCountdown(timerBoxElement, options);
     });
+
+    that.on('complete', function() {
+      that.onComplete();
+    });
+
   };
 })(jQuery);
 

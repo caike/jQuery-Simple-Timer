@@ -18,3 +18,29 @@ test('Parses initial time from seconds', function(){
   ok(timerElement.text() == expected, 'Parsed ' + secondsLeft + ' to ' + expected);
 });
 
+
+asyncTest('Calls the complete event when timer is up', function () {
+  expect(1);
+
+  var timerElement = $('#timer3');
+
+  timerElement.on('complete', function(){
+    ok(true, 'Called the complete event');
+    start();
+  });
+
+  timerElement.startTimer();
+});
+
+asyncTest('Defaults to clearing the timer when complete', function () {
+  expect(1);
+
+  var timerElement = $('#timer3');
+  timerElement.startTimer();
+
+  timerElement.on('complete', function(){
+    equal(timerElement.text(), '00:00:00', 'Cleared timer');
+    start();
+  });
+});
+
