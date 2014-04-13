@@ -111,14 +111,10 @@
       var hours = document.createElement('div');
       hours.className = 'hours';
 
-      var days = document.createElement('div');
-      days.className = 'days';
-
       var clearDiv = document.createElement('div');
       clearDiv.className = 'clearDiv';
 
       return timerBoxElement.
-        append(days).
         append(hours).
         append(minutes).
         append(seconds).
@@ -133,6 +129,10 @@
 
     that.on('complete', function() {
       that.onComplete();
+    });
+
+    that.on('complete', function(){
+      that.addClass('timeout');
     });
 
   };
