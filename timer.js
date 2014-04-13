@@ -68,7 +68,7 @@
       options = options || {};
 
       // defaults to reloading the page once timer is up
-      that.onComplete = options.onComplete || function(){ return location.reload() };
+      that.onComplete = options.onComplete || function(){ return location.reload(); };
 
       var secondsLeft = parseInt(element.data('seconds-left'), 10);
       var refreshRate = options.refreshRate || 1000;
@@ -84,16 +84,16 @@
     };
 
     var createSubDivs = function(timerBoxElement){
-      var seconds = document.createElement('div')
+      var seconds = document.createElement('div');
       seconds.className = 'seconds';
 
-      var minutes = document.createElement('div')
+      var minutes = document.createElement('div');
       minutes.className = 'minutes';
 
-      var hours = document.createElement('div')
+      var hours = document.createElement('div');
       hours.className = 'hours';
 
-      var clearDiv = document.createElement('div')
+      var clearDiv = document.createElement('div');
       clearDiv.className = 'clearDiv';
       
       return timerBoxElement.
@@ -101,7 +101,7 @@
         append(minutes).
         append(seconds).
         append(clearDiv);
-    }
+    };
 
     this.each(function(_index, timerBox) {
       var timerBoxElement = $(timerBox);
