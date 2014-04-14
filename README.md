@@ -1,4 +1,4 @@
-## Simple Timer
+## Simple.Timer
 
 A jQuery plugin that creates a countdown timer.
 

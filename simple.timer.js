@@ -32,19 +32,18 @@
     };
 
     var formatTimeLeft = function(timeLeft) {
-      var days, daysLeft, hours, minutes, remaining, seconds;
-      days = Math.floor(timeLeft / 60 / 60 / 24);
+      var hours, minutes, remaining, seconds;
       remaining = new Date(timeLeft * 1000);
       hours = remaining.getUTCHours();
       minutes = remaining.getUTCMinutes();
       seconds = remaining.getUTCSeconds();
 
-      if (+days === 0 && +hours === 0 && +minutes === 0 && +seconds === 0) {
+      if (+hours === 0 && +minutes === 0 && +seconds === 0) {
         setTimeout((function() {
           that.trigger('complete');
         }), 200);
       } else {
-        return [days, lpad(hours), lpad(minutes), lpad(seconds)];
+        return [lpad(hours), lpad(minutes), lpad(seconds)];
       }
     };
 
@@ -56,25 +55,12 @@
       element.find('.seconds').text(finalValues.pop());
       element.find('.minutes').text(finalValues.pop() + ':');
       element.find('.hours').text(finalValues.pop() + ':');
-      var days = finalValues.pop();
-      switch(parseInt(days, 10)) {
-        case 0:
-          element.find('.days').text('');
-          break;
-        case 1:
-          element.find('.days').text(days + ' day ');
-          break;
-
-        default:
-          element.find('.days').text(days + ' days ');
-      }
     };
 
     var clearTimer = function(element){
       element.find('.seconds').text('00');
       element.find('.minutes').text('00:');
       element.find('.hours').text('00:');
-      element.find('.days').remove();
     };
 
     var startCountdown = function(element, options) {
