@@ -44,21 +44,17 @@
     $('.timer').startTimer();
   });
 &lt;/script&gt;
+
+&lt;div class="timer" data-seconds-left=800&gt;&lt;/div&gt;
 </code></pre>
 
           <p>Use the <code>onComplete</code> option for custom behavior.</p>
 
-<pre><code>&lt;script src="jquery.js"&gt;&lt;/script&gt;
-&lt;script src="simple.timer.js"&gt;&lt;/script&gt;
-&lt;script&gt;
-  $function(){
-    $('.timer').startTimer({
-      onComplete: function(){
-        console.log('Done!');
-      }
-    });
-  });
-&lt;/script&gt;
+<pre><code>$('.timer').startTimer({
+  onComplete: function(){
+    console.log('Done!');
+  }
+});
 </code></pre>
 
 <h3>Tests</h3>
