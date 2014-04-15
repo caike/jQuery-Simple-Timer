@@ -39,16 +39,17 @@
       seconds = remaining.getUTCSeconds();
 
       if (+hours === 0 && +minutes === 0 && +seconds === 0) {
-        setTimeout((function() {
-          that.trigger('complete');
-        }), 200);
+        return [];
       } else {
         return [lpad(hours), lpad(minutes), lpad(seconds)];
       }
     };
 
     var setFinalValue = function(finalValues, element) {
-      if(typeof finalValues == 'undefined'){
+
+      if(finalValues.length === 0){
+        clearTimer(element);
+        element.trigger('complete');
         return false;
       }
 
@@ -72,7 +73,7 @@
         return clearTimer(element);
       };
 
-      that.onComplete = options.onComplete || defaultComplete;
+      element.onComplete = options.onComplete || defaultComplete;
 
       var secondsLeft = parseInt(element.data('seconds-left'), 10);
       var refreshRate = options.refreshRate || 1000;
@@ -85,6 +86,8 @@
         timeLeft = endTime - currentTime();
         setFinalValue(formatTimeLeft(timeLeft), element);
       }), refreshRate);
+
+      element.intervalId = intervalId;
     };
 
     var createSubDivs = function(timerBoxElement){
@@ -109,16 +112,17 @@
 
     this.each(function(_index, timerBox) {
       var timerBoxElement = $(timerBox);
+
+      timerBoxElement.on('complete', function() {
+        timerBoxElement.onComplete(timerBoxElement.intervalId);
+      });
+
+      timerBoxElement.on('complete', function(){
+        timerBoxElement.addClass('timeout');
+      });
+
       createSubDivs(timerBoxElement);
       return startCountdown(timerBoxElement, options);
-    });
-
-    that.on('complete', function() {
-      that.onComplete();
-    });
-
-    that.on('complete', function(){
-      that.addClass('timeout');
     });
 
   };

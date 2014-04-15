@@ -1,8 +1,10 @@
 $(function(){
   $('.timer').startTimer({
+
     onComplete: function(intervalId){
+      clearInterval(intervalId);
+
       $('html, body').addClass('bodyTimeoutBackground');
-      $('.timer').text('00:00:00'); // workaround for bug - TODO: open GH issue
 
       var restartButton = document.createElement('input')
 
