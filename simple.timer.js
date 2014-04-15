@@ -114,7 +114,7 @@
       var timerBoxElement = $(timerBox);
 
       timerBoxElement.on('complete', function() {
-        timerBoxElement.onComplete(timerBoxElement.intervalId);
+        timerBoxElement.onComplete(timerBoxElement);
       });
 
       timerBoxElement.on('complete', function(){
