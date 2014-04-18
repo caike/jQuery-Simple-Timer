@@ -110,7 +110,7 @@
         append(clearDiv);
     };
 
-    this.each(function(_index, timerBox) {
+    return this.each(function(_index, timerBox) {
       var timerBoxElement = $(timerBox);
 
       timerBoxElement.on('complete', function() {
