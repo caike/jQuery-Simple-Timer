@@ -21,6 +21,12 @@ test('Parses initial time from seconds', function(){
   equal(actual, expected, 'Parsed ' + secondsLeft + ' to ' + expected);
 });
 
+test('Returns self', function() {
+  var timerElement = $('#timer1');
+  var returnElement = timerElement.startTimer()
+  equal(timerElement, returnElement, 'Returns self');
+});
+
 
 asyncTest('Calls the complete event when timer is up', function () {
   expect(1);

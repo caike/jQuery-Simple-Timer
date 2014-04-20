@@ -110,7 +110,7 @@
         append(clearDiv);
     };
 
-    return this.each(function(_index, timerBox) {
+    this.each(function(_index, timerBox) {
       var timerBoxElement = $(timerBox);
 
       timerBoxElement.on('complete', function() {
@@ -125,6 +125,7 @@
       return startCountdown(timerBoxElement, options);
     });
 
+    return this;
   };
 })(jQuery);
 
