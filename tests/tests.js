@@ -16,14 +16,14 @@ test('Parses initial time from seconds', function(){
   timerElement.data('seconds-left', secondsLeft);
   timerElement.startTimer();
 
-  var actual = timerElement.text();
-  var expected = '01:45:00';
+  actual = timerElement.text();
+  expected = '01:45:00';
   equal(actual, expected, 'Parsed ' + secondsLeft + ' to ' + expected);
 });
 
 test('Returns self', function() {
   var timerElement = $('#timer1');
-  var returnElement = timerElement.startTimer()
+  var returnElement = timerElement.startTimer();
   equal(timerElement, returnElement, 'Returns self');
 });
 
