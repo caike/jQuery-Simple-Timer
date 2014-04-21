@@ -21,12 +21,10 @@
 </style>
 <script>
 $(function(){
-    var complete = function(){
-      console.log('Complete!');
-    }
-    //$('#timer').startTimer({ oncomplete: complete  });
-    $('#timer').startTimer();
-    //var refreshRateInSeconds = 1000;
-    //startTimer({ refreshRate: (refreshRateInSeconds*1000), onComplete: complete })
+    $('#timer').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      }
+    });
 })
 </script>

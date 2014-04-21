@@ -41,7 +41,7 @@ asyncTest('Calls the complete event when timer is up', function () {
   timerElement.startTimer();
 });
 
-asyncTest('Defaults to clearing the timer when complete', function () {
+asyncTest('Clears the timer when complete and no options', function () {
   expect(1);
 
   var timerElement = $('#timer1');
@@ -54,5 +54,24 @@ asyncTest('Defaults to clearing the timer when complete', function () {
   });
 
   timerElement.trigger('complete');
+});
+
+asyncTest('Clears the timer when complete and with options', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 1);
+  timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    }
+  });
+
+  timerElement.on('complete', function(){
+    setTimeout(function() {
+      equal(timerElement.text(), '00:00:00', 'Cleared timer');
+      start();
+    }, 1000);
+  });
 });
 
