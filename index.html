@@ -56,13 +56,13 @@ Would generate the following:
 
 <div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.timer'</span><span class="p">).</span><span class="nx">startTimer</span><span class="p">({</span>
   <span class="nx">onComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(element){</span>
-    <span class="nx">element.addClass(</span><span class="s1">'timeout'</span></span><span class="p">);</span>
+    <span class="nx">element.addClass(</span><span class="s1">'is-complete'</span></span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
 
 
-<p class="timerDone" data-seconds-left=10></p>
+<p class="timer-done" data-seconds-left=10></p>
 
 <hr>
 
@@ -92,7 +92,7 @@ Would generate the following:
   <script src="https://rawgithub.com/caike/jQuery-Simple-Timer/master/simple.timer.js"
   type="text/javascript"></script>
   <style>
-    .timer, .timerDone {
+    .timer, .timer-done {
       font-size: 30px;
       color: black;
       font-weight: bold;
@@ -104,7 +104,7 @@ Would generate the following:
     .seconds { float: left; }
     .clearDiv { clear: both; }
 
-    .timeout {
+    .is-complete {
       color: red;
       -webkit-animation-name: blinker;
       -webkit-animation-iteration-count: infinite;
@@ -119,11 +119,10 @@ Would generate the following:
   <script>
     $(function(){
       $('.timer').startTimer();
-      var timerDone = $('.timerDone');
+      var timerDone = $('.timer-done');
       timerDone.startTimer({
         onComplete: function(element){
-          clearInterval(element.intervalId);
-          element.addClass('timeout');
+          element.addClass('is-complete');
         }
       });
     })
