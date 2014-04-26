@@ -1,0 +1,25 @@
+{
+  "name": "jQuery-Simple-Timer",
+  "version": "0.0.1",
+  "homepage": "http://csouza.me/jQuery-Simple-Timer",
+  "authors": [
+    "Carlos Souza <carloshrsouza@gmail.com>"
+  ],
+  "description": "A countdown timer plugin for jQuery",
+  "main": "simple.timer.js",
+  "keywords": [
+    "timer",
+    "countdown",
+    "jquery",
+    "plugin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": { "jquery": "1.11.0" }
+}
