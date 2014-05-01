@@ -30,7 +30,7 @@ $ npm install -g bower
 Use the `bower` command to fetch the plugin:
 
 ```
-$ bower install jquery-simple-plugin
+$ bower install jquery-simple-timer
 ```
 
 The plugin will be installed under *bower_components/jquery-simple-timer/simple.timer.js* unless you have a *.bowerrc* stating otherwise.
