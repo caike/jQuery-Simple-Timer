@@ -1,6 +1,14 @@
 <script src="jquery.js"></script>
 <script src="simple.timer.js"></script>
-<div id="timer" data-seconds-left=800"></div>
+
+<p>
+  <div class="timer" data-seconds-left=1800"></div>
+</p>
+
+<p>
+  <div class="timer" data-minutes-left=1.5"></div>
+</p>
+
 <style>
 .days {
   float: left;
@@ -19,9 +27,10 @@
   clear: both;
 }
 </style>
+
 <script>
 $(function(){
-    $('#timer').startTimer({
+    $('.timer').startTimer({
       onComplete: function(){
         console.log('Complete');
       }

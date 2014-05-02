@@ -64,6 +64,20 @@
       element.find('.hours').text('00:');
     };
 
+    var fetchSecondsLeft = function(element){
+      var secondsLeft = element.data('seconds-left');
+      var minutesLeft = element.data('minutes-left');
+
+      if(secondsLeft){
+        return parseInt(secondsLeft, 10);
+      } else if(minutesLeft) {
+        return parseFloat(minutesLeft) * 60;
+      }else {
+        throw 'Missing time data';
+      }
+    };
+
+
     var startCountdown = function(element, options) {
       options = options || {};
 
@@ -75,7 +89,9 @@
 
       element.onComplete = options.onComplete || defaultComplete;
 
-      var secondsLeft = parseInt(element.data('seconds-left'), 10);
+      var timeLeft = null;
+      var secondsLeft = fetchSecondsLeft(element);
+
       var refreshRate = options.refreshRate || 1000;
       var endTime = secondsLeft + currentTime();
       var timeLeft = endTime - currentTime();

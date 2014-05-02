@@ -23,6 +23,7 @@ test('Parses initial time from seconds', function(){
 
 test('Returns self', function() {
   var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 2);
   var returnElement = timerElement.startTimer();
   equal(timerElement, returnElement, 'Returns self');
 });
@@ -75,3 +76,34 @@ asyncTest('Clears the timer when complete and with options', function () {
   });
 });
 
+test('Parses initial time from minutes', function(){
+  var timerElement = $('#timer1');
+  var minutesLeft = 2;
+
+  timerElement.data('minutes-left', minutesLeft);
+  timerElement.startTimer();
+
+  var actual = timerElement.text();
+  var expected = '00:02:00';
+
+  equal(actual, expected, 'Parsed ' + minutesLeft + ' to ' + expected);
+
+  timerElement = $('#timer2');
+  minutesLeft = 1.5;
+
+  timerElement.data('minutes-left', minutesLeft);
+  timerElement.startTimer();
+
+  actual = timerElement.text();
+  expected = '00:01:30';
+  equal(actual, expected, 'Parsed ' + minutesLeft + ' to ' + expected);
+});
+
+test('Throws error when no data present', function() {
+
+  var timerElement = $('#timer1');
+
+  throws(
+    function() { timerElement.startTimer(); }, 'Errors when missing data'
+  );
+});
