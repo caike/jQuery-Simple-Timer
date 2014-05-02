@@ -13,10 +13,10 @@ This plugin can be installed manually from github or via Bower.
 
 ### Manual
 
-Clone the repository and reference the *simple.timer.js* file from your html:
+Clone the repository and reference the *jquery.simple.timer.js* file from your html:
 
 ```HTML
-<script src="simple.timer.js"></script>
+<script src="jquery.simple.timer.js"></script>
 ```
 
 ### Bower
@@ -33,7 +33,7 @@ Use the `bower` command to fetch the plugin:
 $ bower install jquery-simple-timer
 ```
 
-The plugin will be installed under *bower_components/jquery-simple-timer/simple.timer.js* unless you have a *.bowerrc* stating otherwise.
+The plugin will be installed under *bower_components/jquery-simple-timer/jquery.simple.timer.js* unless you have a *.bowerrc* stating otherwise.
 
 
 ## Tests

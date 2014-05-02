@@ -6,7 +6,7 @@
     "Carlos Souza <carloshrsouza@gmail.com>"
   ],
   "description": "A countdown timer plugin for jQuery",
-  "main": "simple.timer.js",
+  "main": "jquery.simple.timer.js",
   "keywords": [
     "timer",
     "countdown",
