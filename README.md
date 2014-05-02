@@ -5,7 +5,18 @@ A jQuery plugin that creates a countdown timer.
 
 ## Usage
 
-`$(targetElement).startTimer();`
+Set the desired duration using either `data-seconds-left` or `data-minutes-left` data attributes.
+
+```HTML
+<div class='.timer' data-minutes-left=3></div>
+<div class='.timer' data-seconds-left=180></div>
+```
+
+Then start the timer with:
+
+```javascript
+$('.timer').startTimer();
+```
 
 ## Install
 
@@ -16,6 +27,7 @@ This plugin can be installed manually from github or via Bower.
 Clone the repository and reference the *jquery.simple.timer.js* file from your html:
 
 ```HTML
+<script src="jquery.js"></script>
 <script src="jquery.simple.timer.js"></script>
 ```
 
