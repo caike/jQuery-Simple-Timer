@@ -76,6 +76,34 @@ asyncTest('Clears the timer when complete and with options', function () {
   });
 });
 
+asyncTest('Do not restart timer when loop option is false', function() {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 0.5);
+  timerElement.startTimer({
+    loop:false
+  });
+  setTimeout(function() {
+    equal(timerElement.hasClass('loop'), false, 'Timer not in Loop');
+    start();
+  }, 1000);
+});
+
+asyncTest('Restart timer when loop option is true', function() {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 0.5);
+  timerElement.startTimer({
+    loop:true
+  });
+  setTimeout(function() {
+    equal(timerElement.hasClass('loop'), true, 'Timer in Loop');
+    start();
+  }, 1000);
+});
+
 test('Parses initial time from minutes', function(){
   var timerElement = $('#timer1');
   var minutesLeft = 2;
