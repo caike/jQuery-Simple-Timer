@@ -18,6 +18,10 @@ Then start the timer with:
 $('.timer').startTimer();
 ```
 
+## Options
+
+For more options, checkout [http://csouza.me/jQuery-Simple-Timer/](http://csouza.me/jQuery-Simple-Timer/)
+
 ## Install
 
 This plugin can be installed manually from github or via Bower.
@@ -51,4 +55,9 @@ The plugin will be installed under *bower_components/jquery-simple-timer/jquery.
 ## Tests
 
 Open [tests/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/tests/index.html)
+
+## Contributors
+
+* [Carlos Souza](https://github.com/caike)
+* [Rafael Oshiro](https://github.com/roshiro)
 
