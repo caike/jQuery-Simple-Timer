@@ -52,7 +52,7 @@ Would generate the following:
 <hr>
 
 <h3>Options</h3>
-<p>Use the <code>onComplete</code> option for custom behavior:</p>
+<p>Use the <code>onComplete</code> option for custom behavior on timeout:</p>
 
 <div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.timer'</span><span class="p">).</span><span class="nx">startTimer</span><span class="p">({</span>
   <span class="nx">onComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(element){</span>
@@ -63,6 +63,20 @@ Would generate the following:
 
 
 <p class="timer-done" data-seconds-left=10></p>
+
+
+<p>Use the <code>loop</code> and <code>loopInterval</code> (in seconds) for infinite loop:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'.timer'</span><span class="p">).</span><span class="nx">startTimer</span><span class="p">({</span>
+  <span class="nx">onComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(element){</span>
+    <span class="nx">element.addClass(</span><span class="s1">'is-complete'</span></span><span class="p">);</span>
+  <span class="p">},</span>
+  <span class="nx">loop</span><span class="o">:</span> <span class="kd">true</span><span class="p">,</span>
+  <span class="nx">loopInterval</span><span class="o">:</span> <span class="kd">3</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+
+<p class="timer-loop" data-seconds-left=3></p>
 
 <hr>
 
@@ -92,7 +106,7 @@ Would generate the following:
   <script src="https://rawgithub.com/caike/jQuery-Simple-Timer/master/jquery.simple.timer.js"
   type="text/javascript"></script>
   <style>
-    .timer, .timer-done {
+    .timer, .timer-done, .timer-loop {
       font-size: 30px;
       color: black;
       font-weight: bold;
@@ -119,11 +133,22 @@ Would generate the following:
   <script>
     $(function(){
       $('.timer').startTimer();
+
       var timerDone = $('.timer-done');
       timerDone.startTimer({
         onComplete: function(element){
           element.addClass('is-complete');
         }
+      });
+
+      var timerLoop = $('.timer-loop');
+      timerLoop.startTimer({
+        onComplete: function(element){
+          element.addClass('is-complete');
+        },
+
+        loop: true,
+        loopInterval: 3
       });
     })
   </script>
