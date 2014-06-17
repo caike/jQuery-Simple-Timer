@@ -9,13 +9,15 @@
 */
 (function($){
 
+  var timer;
+
   var Timer = function(targetElement){
     this.targetElement = targetElement;
     return this;
   };
 
   Timer.start = function(options, targetElement){
-    var timer = new Timer(targetElement);
+    timer = new Timer(targetElement);
     return timer.start(options);
   };
 
@@ -43,6 +45,7 @@
 
     this.targetElement.each(function(_index, timerBox) {
       var timerBoxElement = $(timerBox);
+      var cssClassSnapshot = timerBoxElement.attr('class');
 
       timerBoxElement.on('complete', function() {
         clearInterval(timerBoxElement.intervalId);
@@ -56,10 +59,34 @@
         timerBoxElement.addClass('timeout');
       });
 
+      timerBoxElement.on('complete', function(){
+        if(options && options.loop === true) {
+          timer.resetTimer(timerBoxElement, options, cssClassSnapshot);
+        }
+      });
+
       createSubDivs(timerBoxElement);
       return this.startCountdown(timerBoxElement, options);
     }.bind(this));
   };
+
+  /**
+   * Resets timer and add css class 'loop' to indicate the timer is in a loop.
+   * $timerBox {jQuery object} - The timer element
+   * options {object} - The options for the timer
+   * css - The original css of the element
+   */
+  Timer.prototype.resetTimer = function($timerBox, options, css) {
+    var interval = 0;
+    if(options.loopInterval) {
+      interval = parseInt(options.loopInterval, 10) * 1000;
+    }
+    setTimeout(function() {
+      $timerBox.trigger('reset');
+      $timerBox.attr('class', css + ' loop');
+      timer.startCountdown($timerBox, options);
+    }, interval);
+  }
 
   Timer.prototype.fetchSecondsLeft = function(element){
     var secondsLeft = element.data('seconds-left');
@@ -160,4 +187,3 @@
     return this;
   };
 })(jQuery);
-
