@@ -8,8 +8,8 @@ A jQuery plugin that creates a countdown timer.
 Set the desired duration using either `data-seconds-left` or `data-minutes-left` data attributes.
 
 ```HTML
-<div class='.timer' data-minutes-left=3></div>
-<div class='.timer' data-seconds-left=180></div>
+<div class='timer' data-minutes-left=3></div>
+<div class='timer' data-seconds-left=180></div>
 ```
 
 Then start the timer with:
