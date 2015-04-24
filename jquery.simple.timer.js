@@ -44,6 +44,7 @@
     };
 
     this.targetElement.each(function(_index, timerBox) {
+      var that = this;
       var timerBoxElement = $(timerBox);
       var cssClassSnapshot = timerBoxElement.attr('class');
 
@@ -63,6 +64,16 @@
         if(options && options.loop === true) {
           timer.resetTimer(timerBoxElement, options, cssClassSnapshot);
         }
+      });
+
+      timerBoxElement.on('pause', function() {
+        clearInterval(timerBoxElement.intervalId);
+        timerBoxElement.paused = true;
+      });
+
+      timerBoxElement.on('resume', function() {
+        timerBoxElement.paused = false;
+        that.startCountdown(timerBoxElement, { secondsLeft: timerBoxElement.data('timeLeft') });
       });
 
       createSubDivs(timerBoxElement);
@@ -111,8 +122,18 @@
     }.bind(this);
 
     element.onComplete = options.onComplete || defaultComplete;
+    element.allowPause = options.allowPause || false;
+    if(element.allowPause){
+      element.on('click', function() {
+        if(element.paused){
+          element.trigger('resume');
+        }else{
+          element.trigger('pause');
+        }
+      });
+    }
 
-    var secondsLeft = this.fetchSecondsLeft(element);
+    var secondsLeft = options.secondsLeft || this.fetchSecondsLeft(element);
 
     var refreshRate = options.refreshRate || 1000;
     var endTime = secondsLeft + this.currentTime();
@@ -122,6 +143,7 @@
 
     intervalId = setInterval((function() {
       timeLeft = endTime - this.currentTime();
+      element.data('timeLeft', timeLeft);
       this.setFinalValue(this.formatTimeLeft(timeLeft), element);
     }.bind(this)), refreshRate);
 
