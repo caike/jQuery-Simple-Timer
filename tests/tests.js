@@ -135,3 +135,61 @@ test('Throws error when no data present', function() {
     function() { timerElement.startTimer(); }, 'Errors when missing data'
   );
 });
+
+asyncTest('Pauses on click when allowPause is true', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 3);
+  timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    },
+    allowPause: true
+  }).trigger('click')
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:03', 'Timer is on pause');
+    start();
+  }, 3000);
+});
+
+asyncTest('Does NOT pause on click when allowPause is not specified', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 2);
+  timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    },
+    // allowPause: true
+  }).trigger('click')
+
+  timerElement.on('complete', function(){
+    setTimeout(function() {
+      equal(timerElement.text(), '00:00:00', 'Cleared timer');
+      start();
+    }, 2000);
+  });
+});
+
+asyncTest('Does NOT pause on click when allowPause is false', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 2);
+  timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    },
+    allowPause: false
+  }).trigger('click')
+
+  timerElement.on('complete', function(){
+    setTimeout(function() {
+      equal(timerElement.text(), '00:00:00', 'Cleared timer');
+      start();
+    }, 2000);
+  });
+});
