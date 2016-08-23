@@ -1,0 +1,112 @@
+<script src="./../jquery.js"></script>
+<script src="./../jquery.simple.timer.js"></script>
+
+<h3>Examples</h3>
+
+<ul>
+  <li>
+  <p><strong>Default behavior</strong></div></p>
+  <p>
+    <pre><code>// HTML
+&lt;div class="timer-quick" data-seconds-left="5"&gt;&lt;/div&gt;
+
+// JavaScript
+$(function(){
+    $('.timer-quick').startTimer();
+})
+
+// CSS
+.timeout {
+  color: red;
+}
+    </code></pre>
+  </p>
+  <p>
+  <small>(defaults behavior adds <i>.timeout</i> class when complete)</small>
+  <div class="timer-quick" data-seconds-left="5"></div>
+  </p>
+</li>
+
+<li>
+  <p><strong>console.log when complete</strong></div>
+  <p>
+    <pre><code>//HTML
+&lt;div class="timer" data-seconds-left="25"&gt;&lt;/div&gt;
+
+// JavaScript
+$(function(){
+    $('.timer').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      }
+    });
+})
+    </code></pre>
+  </p>
+    <p><div class="timer" data-seconds-left="25"></div></p>
+</li>
+
+<li>
+  <p><strong>console.log when complete and allow pause on click</strong></p>
+  <p><pre><code>// HTML
+&lt;div class="timer-pause" data-minutes-left="1.5"&gt;&lt;/div&gt;
+
+// JavaScript
+    $(function(){
+    $('.timer').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      },
+      allowPause: true
+    });
+})
+    </code></pre>
+  <p>
+    <small>(click on timer to pause/resume)</small>
+    <div class="timer-pause" data-minutes-left="1.5"></div>
+  </p>
+</li>
+</ul>
+<style>
+.days {
+  float: left;
+  margin-right: 4px;
+}
+.hours {
+  float: left;
+}
+.minutes {
+  float: left;
+}
+.seconds {
+  float: left;
+}
+.clearDiv {
+  clear: both;
+}
+
+.timeout {
+  color: red;
+}
+
+</style>
+
+<script>
+$(function(){
+
+    $('.timer-quick').startTimer();
+
+    $('.timer').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      }
+    });
+
+    $('.timer-pause').startTimer({
+      onComplete: function(){
+        console.log('Complete');
+      },
+      allowPause: true
+    });
+})
+</script>

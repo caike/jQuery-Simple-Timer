@@ -51,6 +51,9 @@ $ bower install jquery-simple-timer
 
 The plugin will be installed under *bower_components/jquery-simple-timer/jquery.simple.timer.js* unless you have a *.bowerrc* stating otherwise.
 
+## Live Examples
+
+Open [examples/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/examples/index.html)
 
 ## Tests
 
