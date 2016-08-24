@@ -69,10 +69,8 @@ asyncTest('Clears the timer when complete and with options', function () {
   });
 
   timerElement.on('complete', function(){
-    setTimeout(function() {
-      equal(timerElement.text(), '00:00:00', 'Cleared timer');
-      start();
-    }, 1000);
+    equal(timerElement.text(), '00:00:00', 'Cleared timer');
+    start();
   });
 });
 
@@ -166,12 +164,11 @@ asyncTest('Does NOT pause on click when allowPause is not specified', function (
     // allowPause: true
   }).trigger('click')
 
-  timerElement.on('complete', function(){
-    setTimeout(function() {
-      equal(timerElement.text(), '00:00:00', 'Cleared timer');
-      start();
-    }, 2000);
-  });
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:01', 'Cleared timer');
+    start();
+  }, 1000);
 });
 
 asyncTest('Does NOT pause on click when allowPause is false', function () {
@@ -186,19 +183,18 @@ asyncTest('Does NOT pause on click when allowPause is false', function () {
     allowPause: false
   }).trigger('click')
 
-  timerElement.on('complete', function(){
-    setTimeout(function() {
-      equal(timerElement.text(), '00:00:00', 'Cleared timer');
-      start();
-    }, 2000);
-  });
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:01', 'Cleared timer');
+    start();
+  }, 1000);
 });
 
 asyncTest('When timeLeft is less than 0, it completes upon return (computer asleep or browser tab is inactive)', function () {
   expect(1);
 
   var timerElement = $('#timer1');
-  timerElement.data('seconds-left', 2);
+  timerElement.data('seconds-left', 3);
 
   var plugin = timerElement.startTimer({
     onComplete: function() {
