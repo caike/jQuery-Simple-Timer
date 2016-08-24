@@ -193,3 +193,26 @@ asyncTest('Does NOT pause on click when allowPause is false', function () {
     }, 2000);
   });
 });
+
+asyncTest('When timeLeft is less than 0, it completes upon return (computer asleep or browser tab is inactive)', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 2);
+
+  var plugin = timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    }
+  })
+
+  // Force time in the future
+  plugin.TimerClass.prototype.currentTime = function(){
+    return Math.round((new Date()).getTime() / 1000) + 1000;
+  }
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:00', 'Cleared timer');
+    start();
+  }, 1000);
+});

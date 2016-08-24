@@ -143,6 +143,11 @@
 
     intervalId = setInterval((function() {
       timeLeft = endTime - this.currentTime();
+      // When timer has been idle and only resumed past timeout,
+      // then we immediatelly complete the timer.
+      if(timeLeft < 0 ){
+        timeLeft = 0;
+      }
       element.data('timeLeft', timeLeft);
       this.setFinalValue(this.formatTimeLeft(timeLeft), element);
     }.bind(this)), refreshRate);
@@ -205,6 +210,7 @@
 
 
   $.fn.startTimer = function(options) {
+    this.TimerClass = Timer;
     Timer.start(options, this);
     return this;
   };
