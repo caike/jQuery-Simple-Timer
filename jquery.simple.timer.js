@@ -210,7 +210,7 @@
 
 
   $.fn.startTimer = function(options) {
-    this.TimerClass = Timer;
+    this.TimerObject = Timer;
     Timer.start(options, this);
     return this;
   };

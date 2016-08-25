@@ -232,7 +232,7 @@ asyncTest('When timeLeft is less than 0, it completes upon return (computer asle
   })
 
   // Force time in the future
-  plugin.TimerClass.prototype.currentTime = function(){
+  plugin.TimerObject.prototype.currentTime = function(){
     return Math.round((new Date()).getTime() / 1000) + 1000;
   }
 
