@@ -74,6 +74,35 @@ asyncTest('Clears the timer when complete and with options', function () {
   });
 });
 
+
+asyncTest('Cleas the timer when 0 minutes left', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('minutes-left', 0);
+
+  var plugin = timerElement.startTimer({});
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:00', 'Cleared timer');
+    start();
+  }, 1000);
+});
+
+asyncTest('Clears the timer when 0 seconds left', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 0);
+
+  var plugin = timerElement.startTimer({});
+
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:00', 'Cleared timer');
+    start();
+  }, 1000);
+});
+
 asyncTest('Do not restart timer when loop option is false', function() {
   expect(1);
 

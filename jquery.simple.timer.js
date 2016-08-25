@@ -103,9 +103,9 @@
     var secondsLeft = element.data('seconds-left');
     var minutesLeft = element.data('minutes-left');
 
-    if(secondsLeft){
+    if(Number.isFinite(secondsLeft)){
       return parseInt(secondsLeft, 10);
-    } else if(minutesLeft) {
+    } else if(Number.isFinite(minutesLeft)) {
       return parseFloat(minutesLeft) * 60;
     }else {
       throw 'Missing time data';
