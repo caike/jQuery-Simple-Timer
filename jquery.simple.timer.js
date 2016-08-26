@@ -184,9 +184,9 @@
 
     var hours, minutes, remaining, seconds;
     remaining = new Date(timeLeft * 1000);
-    hours = remaining.getUTCHours();
-    minutes = remaining.getUTCMinutes();
-    seconds = remaining.getUTCSeconds();
+    hours = remaining.getHours();
+    minutes = remaining.getMinutes();
+    seconds = remaining.getSeconds();
 
     if (+hours === 0 && +minutes === 0 && +seconds === 0) {
       return [];
