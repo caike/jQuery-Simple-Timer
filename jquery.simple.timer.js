@@ -182,11 +182,13 @@
       return padded;
     };
 
-    var hours, minutes, remaining, seconds;
-    remaining = new Date(timeLeft * 1000);
-    hours = remaining.getHours();
-    minutes = remaining.getMinutes();
-    seconds = remaining.getSeconds();
+    var hours = Math.floor(timeLeft / 3600);
+    timeLeft -= hours * 3600;
+
+    var minutes = Math.floor(timeLeft / 60);
+    timeLeft -= minutes * 60;
+
+    var seconds = parseInt(timeLeft % 60, 10);
 
     if (+hours === 0 && +minutes === 0 && +seconds === 0) {
       return [];
