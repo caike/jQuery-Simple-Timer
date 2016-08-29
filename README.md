@@ -63,4 +63,5 @@ Open [tests/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/test
 
 * [Carlos Souza](https://github.com/caike)
 * [Rafael Oshiro](https://github.com/roshiro)
+* [ASCIIcat](https://github.com/ASCIIcat)
 
