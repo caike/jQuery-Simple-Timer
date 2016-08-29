@@ -241,3 +241,41 @@ asyncTest('When timeLeft is less than 0, it completes upon return (computer asle
     start();
   }, 1000);
 });
+
+asyncTest('When seconds left is greater than 24h, timer displays proper hour', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  var twentySixHoursInSeconds = (26*60*60)
+  timerElement.data('seconds-left', twentySixHoursInSeconds);
+
+  var plugin = timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    }
+  })
+
+  setTimeout(function() {
+    equal(timerElement.text(), '26:00:00', 'Cleared timer');
+    start();
+  }, 500);
+});
+
+asyncTest('When minutes left is greater than 24h, timer displays proper hour', function () {
+  expect(1);
+
+  var timerElement = $('#timer1');
+  var twentyEightHoursInMinutes = (28*60)
+  timerElement.data('minutes-left', twentyEightHoursInMinutes);
+
+  var plugin = timerElement.startTimer({
+    onComplete: function() {
+      console.log('complete');
+    }
+  })
+
+  setTimeout(function() {
+    equal(timerElement.text(), '28:00:00', 'Cleared timer');
+    start();
+  }, 500);
+});
