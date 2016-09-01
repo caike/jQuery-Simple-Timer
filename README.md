@@ -35,6 +35,28 @@ Clone the repository and reference the *jquery.simple.timer.js* file from your h
 <script src="jquery.simple.timer.js"></script>
 ```
 
+### npm
+
+To install from npm, run:
+
+```
+npm install jquery-simple-timer --save
+```
+
+jQuery is **NOT** installed automatically. We need to install jQuery (`npm install jquery --save`) and then pass it as an argument to the return value of the `require()` statement. Here's an example:
+
+```javascript
+// file: client.js
+"use strict";
+
+let $ = require("jquery");
+require("jquery-simple-timer")($); // passing jQuery as argument
+
+$(function(){
+  $('.timer').startTimer();
+});
+```
+
 ### Bower
 
 In order to install it using Bower, make sure you have node, npm and bower installed:

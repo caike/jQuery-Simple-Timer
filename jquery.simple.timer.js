@@ -7,34 +7,70 @@
 *   $('.timer').startTimer();
 *
 */
-(function($){
+
+(function (factory) {
+  // Using as a CommonJS module
+  if(typeof module === "object" && typeof module.exports === "object") {
+    // jQuery must be provided as argument when used
+    // as a CommonJS module.
+    //
+    // For example:
+    //   let $ = require("jquery");
+    //   require("jquery-simple-timer")($);
+    module.exports = function(jq) {
+      factory(jq, window, document);
+    }
+  } else {
+    // Using as script tag
+    //
+    // For example:
+    //   <script src="jquery.simple.timer.js"></script>
+    factory(jQuery, window, document);
+  }
+}(function($, window, document, undefined) {
 
   var timer;
+  var _options = {};
 
   var Timer = function(targetElement){
     this.targetElement = targetElement;
     return this;
   };
 
-  Timer.start = function(options, targetElement){
+  Timer.start = function(userOptions, targetElement){
     timer = new Timer(targetElement);
-    return timer.start(options);
+    mergeOptions(userOptions);
+    return timer.start(userOptions);
   };
+
+  // Writes to `_options` object so that other
+  // functions can access it without having to
+  // pass this object as argument multiple times.
+  function mergeOptions(opts) {
+    opts = opts || {};
+    var classNames = opts.classNames || {};
+
+    _options.classNameSeconds       = classNames.seconds  || 'jst-seconds'
+      , _options.classNameMinutes   = classNames.minutes  || 'jst-minutes'
+      , _options.classNameHours     = classNames.hours    || 'jst-hours'
+      , _options.classNameClearDiv  = classNames.clearDiv || 'jst-clearDiv'
+      , _options.classNameTimeout   = classNames.timeout || 'jst-timeout';
+  }
 
   Timer.prototype.start = function(options) {
 
     var createSubDivs = function(timerBoxElement){
       var seconds = document.createElement('div');
-      seconds.className = 'seconds';
+      seconds.className = _options.classNameSeconds;
 
       var minutes = document.createElement('div');
-      minutes.className = 'minutes';
+      minutes.className = _options.classNameMinutes;
 
       var hours = document.createElement('div');
-      hours.className = 'hours';
+      hours.className = _options.classNameHours;
 
       var clearDiv = document.createElement('div');
-      clearDiv.className = 'clearDiv';
+      clearDiv.className = _options.classNameClearDiv;
 
       return timerBoxElement.
         append(hours).
@@ -57,7 +93,7 @@
       });
 
       timerBoxElement.on('complete', function(){
-        timerBoxElement.addClass('timeout');
+        timerBoxElement.addClass(_options.classNameTimeout);
       });
 
       timerBoxElement.on('complete', function(){
@@ -156,9 +192,9 @@
   };
 
   Timer.prototype.clearTimer = function(element){
-    element.find('.seconds').text('00');
-    element.find('.minutes').text('00:');
-    element.find('.hours').text('00:');
+    element.find('.jst-seconds').text('00');
+    element.find('.jst-minutes').text('00:');
+    element.find('.jst-hours').text('00:');
   };
 
   Timer.prototype.currentTime = function() {
@@ -205,9 +241,9 @@
       return false;
     }
 
-    element.find('.seconds').text(finalValues.pop());
-    element.find('.minutes').text(finalValues.pop() + ':');
-    element.find('.hours').text(finalValues.pop() + ':');
+    element.find('.' + _options.classNameSeconds).text(finalValues.pop());
+    element.find('.' + _options.classNameMinutes).text(finalValues.pop() + ':');
+    element.find('.' + _options.classNameHours).text(finalValues.pop() + ':');
   };
 
 
@@ -216,4 +252,5 @@
     Timer.start(options, this);
     return this;
   };
-})(jQuery);
+
+}));

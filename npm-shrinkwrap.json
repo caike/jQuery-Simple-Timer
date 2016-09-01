@@ -1,0 +1,11 @@
+{
+  "name": "jquery-simple-timer",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": {
+      "version": "1.12.4",
+      "from": "jquery@>=1.12.4 <1.13.0",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-1.12.4.tgz"
+    }
+  }
+}

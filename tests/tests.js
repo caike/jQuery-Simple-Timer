@@ -42,6 +42,14 @@ asyncTest('Calls the complete event when timer is up', function () {
   timerElement.startTimer();
 });
 
+
+test('Adds timeout class when timer is up', function () {
+  var timerElement = $('#timer3');
+  timerElement.startTimer();
+  timerElement.trigger('complete');
+  ok(timerElement.hasClass('jst-timeout'), 'adds default timeout class');
+});
+
 asyncTest('Clears the timer when complete and no options', function () {
   expect(1);
 
@@ -197,7 +205,7 @@ asyncTest('Does NOT pause on click when allowPause is not specified', function (
   setTimeout(function() {
     equal(timerElement.text(), '00:00:01', 'Cleared timer');
     start();
-  }, 1000);
+  }, 1500);
 });
 
 asyncTest('Does NOT pause on click when allowPause is false', function () {
@@ -279,3 +287,40 @@ asyncTest('When minutes left is greater than 24h, timer displays proper hour', f
     start();
   }, 500);
 });
+
+test('Uses default classNames when none given via options', function(){
+  var timerElement = $('#timer1');
+  var secondsLeft = 2;
+
+  timerElement.data('seconds-left', secondsLeft);
+  timerElement.startTimer();
+
+  equal(timerElement.find('.jst-hours').length, 1, 'Default hours class');
+  equal(timerElement.find('.jst-minutes').length, 1, 'Default minutes class');
+  equal(timerElement.find('.jst-seconds').length, 1, 'Default seconds class');
+  equal(timerElement.find('.jst-clearDiv').length, 1, 'Default clearDiv class');
+});
+
+test('Accepts options for element classNames', function(){
+  var timerElement = $('#timer1');
+  var secondsLeft = 10;
+
+  timerElement.data('seconds-left', secondsLeft);
+  timerElement.startTimer({
+    classNames: {
+      hours: 'banana-hours',
+      minutes: 'banana-minutes',
+      seconds: 'banana-seconds',
+      clearDiv: 'banana-clearDiv',
+      timeout: 'banana-timeout'
+    }
+  });
+
+  equal(timerElement.find('.banana-hours').length, 1, 'Found hours class');
+  equal(timerElement.find('.banana-minutes').length, 1, 'Found minutes class');
+  equal(timerElement.find('.banana-seconds').length, 1, 'Found seconds class');
+  equal(timerElement.find('.banana-clearDiv').length, 1, 'Found clearDiv class');
+  timerElement.trigger('complete');
+  ok(timerElement.hasClass('banana-timeout'), 'Found timeout class');
+});
+

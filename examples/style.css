@@ -19,16 +19,16 @@ body {
   text-align: center;
 }
 
-.hours {
+.jst-hours {
   float: left;
 }
-.minutes {
+.jst-minutes {
   float: left;
 }
-.seconds {
+.jst-seconds {
   float: left;
 }
-.clearDiv {
+.jst-clearDiv {
   clear: both;
 }
 

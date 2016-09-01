@@ -16,13 +16,25 @@ $(function(){
 })
 
 // CSS
-.timeout {
+.jst-hours {
+  float: left;
+}
+.jst-minutes {
+  float: left;
+}
+.jst-seconds {
+  float: left;
+}
+.jst-clearDiv {
+  clear: both;
+}
+.jst-timeout {
   color: red;
 }
     </code></pre>
   </p>
   <p>
-  <small>(defaults behavior adds <i>.timeout</i> class when complete)</small>
+  <small>(default behavior adds <i>.timeout</i> class when complete)</small>
   <div class="timer-quick" data-seconds-left="5"></div>
   </p>
 </li>
@@ -68,24 +80,19 @@ $(function(){
 </li>
 </ul>
 <style>
-.days {
-  float: left;
-  margin-right: 4px;
-}
-.hours {
+.jst-hours {
   float: left;
 }
-.minutes {
+.jst-minutes {
   float: left;
 }
-.seconds {
+.jst-seconds {
   float: left;
 }
-.clearDiv {
+.jst-clearDiv {
   clear: both;
 }
-
-.timeout {
+.jst-timeout {
   color: red;
 }
 

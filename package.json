@@ -1,23 +1,25 @@
 {
   "name": "jquery-simple-timer",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "A countdown timer plugin for jQuery",
   "main": "jquery.simple.timer.js",
   "directories": {
     "example": "examples",
     "test": "tests"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/caike/jQuery-Simple-Timer.git"
+    "url": "git+https://github.com/caike/jQuery-Simple-Timer.git"
   },
   "keywords": [
     "jquery-plugin",
+    "timer",
+    "countdown timer",
     "ecosystem:jquery"
   ],
+  "dependencies" : {
+    "jquery": "~>1.12.4"
+  },
   "author": "Carlos Souza <carloshrsouza@gmail.com> (http://csouza.me/)",
   "license": "MIT",
   "bugs": {
