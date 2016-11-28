@@ -30,47 +30,49 @@
 }(function($, window, document, undefined) {
 
   var timer;
-  var _options = {};
 
   var Timer = function(targetElement){
+    this._options = {};
     this.targetElement = targetElement;
     return this;
   };
 
   Timer.start = function(userOptions, targetElement){
     timer = new Timer(targetElement);
-    mergeOptions(userOptions);
+    mergeOptions(timer, userOptions);
     return timer.start(userOptions);
   };
 
-  // Writes to `_options` object so that other
+  // Writes to `this._options` object so that other
   // functions can access it without having to
   // pass this object as argument multiple times.
-  function mergeOptions(opts) {
+  function mergeOptions(timer, opts) {
     opts = opts || {};
     var classNames = opts.classNames || {};
 
-    _options.classNameSeconds       = classNames.seconds  || 'jst-seconds'
-      , _options.classNameMinutes   = classNames.minutes  || 'jst-minutes'
-      , _options.classNameHours     = classNames.hours    || 'jst-hours'
-      , _options.classNameClearDiv  = classNames.clearDiv || 'jst-clearDiv'
-      , _options.classNameTimeout   = classNames.timeout || 'jst-timeout';
+    timer._options.classNameSeconds       = classNames.seconds  || 'jst-seconds'
+      , timer._options.classNameMinutes   = classNames.minutes  || 'jst-minutes'
+      , timer._options.classNameHours     = classNames.hours    || 'jst-hours'
+      , timer._options.classNameClearDiv  = classNames.clearDiv || 'jst-clearDiv'
+      , timer._options.classNameTimeout   = classNames.timeout || 'jst-timeout';
   }
 
   Timer.prototype.start = function(options) {
 
+    var that = this;
+
     var createSubDivs = function(timerBoxElement){
       var seconds = document.createElement('div');
-      seconds.className = _options.classNameSeconds;
+      seconds.className = that._options.classNameSeconds;
 
       var minutes = document.createElement('div');
-      minutes.className = _options.classNameMinutes;
+      minutes.className = that._options.classNameMinutes;
 
       var hours = document.createElement('div');
-      hours.className = _options.classNameHours;
+      hours.className = that._options.classNameHours;
 
       var clearDiv = document.createElement('div');
-      clearDiv.className = _options.classNameClearDiv;
+      clearDiv.className = that._options.classNameClearDiv;
 
       return timerBoxElement.
         append(hours).
@@ -93,7 +95,7 @@
       });
 
       timerBoxElement.on('complete', function(){
-        timerBoxElement.addClass(_options.classNameTimeout);
+        timerBoxElement.addClass(that._options.classNameTimeout);
       });
 
       timerBoxElement.on('complete', function(){
@@ -241,9 +243,9 @@
       return false;
     }
 
-    element.find('.' + _options.classNameSeconds).text(finalValues.pop());
-    element.find('.' + _options.classNameMinutes).text(finalValues.pop() + ':');
-    element.find('.' + _options.classNameHours).text(finalValues.pop() + ':');
+    element.find('.' + this._options.classNameSeconds).text(finalValues.pop());
+    element.find('.' + this._options.classNameMinutes).text(finalValues.pop() + ':');
+    element.find('.' + this._options.classNameHours).text(finalValues.pop() + ':');
   };
 
 

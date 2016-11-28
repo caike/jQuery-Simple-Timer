@@ -324,3 +324,29 @@ test('Accepts options for element classNames', function(){
   ok(timerElement.hasClass('banana-timeout'), 'Found timeout class');
 });
 
+asyncTest('Runs independent timers with custom options', function(){
+  expect(1);
+
+  var timerElement = $('#timer1');
+  timerElement.data('seconds-left', 10);
+  timerElement.startTimer();
+  setTimeout(function() {
+    equal(timerElement.text(), '00:00:08', 'Cleared timer');
+    start();
+  }, 2500);
+
+  var timerElement2 = $('#timer2');
+  timerElement2.data('seconds-left', 5);
+
+  timerElement2.startTimer({
+    classNames: {
+      hours: 'banana-hours',
+      minutes: 'banana-minutes',
+      seconds: 'banana-seconds',
+      clearDiv: 'banana-clearDiv',
+      timeout: 'banana-timeout'
+    }
+  });
+
+});
+
