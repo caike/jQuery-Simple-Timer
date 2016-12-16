@@ -18,9 +18,43 @@ Then start the timer with:
 $('.timer').startTimer();
 ```
 
+The plugin creates `<div>` elements with the following CSS classes by default:
+
+  * `jst-hours`
+  * `jst-minutes`
+  * `jst-seconds`
+  * `jst-clearDiv`
+  * `jst-timeout` _(added only when the timer is finished)_
+
+Here's an example of the HTML of a finished timer:
+
+```HTML
+<div class="timer jst-timeout" data-seconds-left="3">
+  <div class="jst-hours">00:</div>
+  <div class="jst-minutes">00:</div>
+  <div class="jst-seconds">00</div>
+  <div class="jst-clearDiv"></div>
+</div>
+```
+
+The default CSS classes can be used to style the timer or we can specify [custom classes](https://github.com/caike/jQuery-Simple-Timer/blob/master/tests/tests.js#L342-L348) 
+via the `classNames` option. Like this:
+
+```javascript
+$('.timer').startTimer({
+  classNames: {
+    hours: 'myClass-hours',
+    minutes: 'myClass-minutes',
+    seconds: 'myClass-seconds',
+    clearDiv: 'myClass-clearDiv',
+    timeout: 'myClass-timeout'
+  }
+});
+```
+
 ## Options
 
-For more options, checkout [http://csouza.me/jQuery-Simple-Timer/](http://csouza.me/jQuery-Simple-Timer/)
+For more options, checkout [http://csouza.me/jQuery-Simple-Timer/](http://csouza.me/jQuery-Simple-Timer/) and [some more examples.](https://rawgit.com/caike/jQuery-Simple-Timer/master/examples/index.html)
 
 ## Install
 
@@ -56,10 +90,6 @@ $(function(){
   $('.timer').startTimer();
 });
 ```
-
-## Live Examples
-
-Open [examples/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/examples/index.html)
 
 ## Tests
 
