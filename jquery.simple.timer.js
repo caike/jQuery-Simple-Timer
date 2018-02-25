@@ -29,6 +29,11 @@
   }
 }(function($, window, document, undefined) {
 
+  // Polyfill new JS features for older browser
+  Number.isFinite = Number.isFinite || function(value) {
+    return typeof value === 'number' && isFinite(value);
+  }
+
   var timer;
 
   var Timer = function(targetElement){
