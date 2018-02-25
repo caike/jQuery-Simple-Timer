@@ -37,7 +37,7 @@ Here's an example of the HTML of a finished timer:
 </div>
 ```
 
-The default CSS classes can be used to style the timer or we can specify [custom classes](https://github.com/caike/jQuery-Simple-Timer/blob/master/tests/tests.js#L342-L348) 
+The default CSS classes can be used to style the timer or we can specify [custom classes](https://github.com/caike/jQuery-Simple-Timer/blob/master/tests/tests.js#L342-L348)
 via the `classNames` option. Like this:
 
 ```javascript
@@ -100,4 +100,5 @@ Open [tests/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/test
 * [Carlos Souza](https://github.com/caike)
 * [Rafael Oshiro](https://github.com/roshiro)
 * [ASCIIcat](https://github.com/ASCIIcat)
+* [Vicky Leong](https://github.com/vleong2332)
 
