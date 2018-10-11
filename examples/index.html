@@ -78,7 +78,24 @@ $(function(){
     <div class="timer-pause" data-minutes-left="1.5"></div>
   </p>
 </li>
+
+<li>
+    <p><strong>timer structured elements span</strong></p>
+    <p><pre><code>
+// HTML
+&lt;span class="timer-span" data-minutes-left="5"&gt;&lt;/span&gt;
+
+// JavaScript
+$('.timer-span').startTimer({
+    elementContainer: "span"
+});
+    </code></pre>
+    <span class="timer-span" data-seconds-left="5"></span>
+</li>
 </ul>
+<br/>
+<br/>
+<br/>
 <style>
 .jst-hours {
   float: left;
@@ -102,6 +119,10 @@ $(function(){
 $(function(){
 
     $('.timer-quick').startTimer();
+
+    $('.timer-span').startTimer({
+        elementContainer: "span"
+    });
 
     $('.timer').startTimer({
       onComplete: function(){
