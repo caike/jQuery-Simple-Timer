@@ -101,4 +101,5 @@ Open [tests/index.html](https://rawgit.com/caike/jQuery-Simple-Timer/master/test
 * [Rafael Oshiro](https://github.com/roshiro)
 * [ASCIIcat](https://github.com/ASCIIcat)
 * [Vicky Leong](https://github.com/vleong2332)
+* [Alex Sandro](https://github.com/alexsilva)
 
