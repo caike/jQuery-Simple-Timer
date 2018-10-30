@@ -53,6 +53,10 @@
   // pass this object as argument multiple times.
   function mergeOptions(timer, opts) {
     opts = opts || {};
+
+    // Element that will be created for hours, minutes, and seconds.
+    timer._options.elementContainer = opts.elementContainer || 'div';
+
     var classNames = opts.classNames || {};
 
     timer._options.classNameSeconds       = classNames.seconds  || 'jst-seconds'
@@ -66,24 +70,24 @@
 
     var that = this;
 
-    var createSubDivs = function(timerBoxElement){
-      var seconds = document.createElement('div');
+    var createSubElements = function(timerBoxElement){
+      var seconds = document.createElement(that._options.elementContainer);
       seconds.className = that._options.classNameSeconds;
 
-      var minutes = document.createElement('div');
+      var minutes = document.createElement(that._options.elementContainer);
       minutes.className = that._options.classNameMinutes;
 
-      var hours = document.createElement('div');
+      var hours = document.createElement(that._options.elementContainer);
       hours.className = that._options.classNameHours;
 
-      var clearDiv = document.createElement('div');
-      clearDiv.className = that._options.classNameClearDiv;
+      var clearElement = document.createElement(that._options.elementContainer);
+      clearElement.className = that._options.classNameClearDiv;
 
       return timerBoxElement.
         append(hours).
         append(minutes).
         append(seconds).
-        append(clearDiv);
+        append(clearElement);
     };
 
     this.targetElement.each(function(_index, timerBox) {
@@ -119,7 +123,7 @@
         that.startCountdown(timerBoxElement, { secondsLeft: timerBoxElement.data('timeLeft') });
       });
 
-      createSubDivs(timerBoxElement);
+      createSubElements(timerBoxElement);
       return this.startCountdown(timerBoxElement, options);
     }.bind(this));
   };
