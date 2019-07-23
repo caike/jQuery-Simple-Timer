@@ -120,7 +120,9 @@
 
       timerBoxElement.on('resume', function() {
         timerBoxElement.paused = false;
-        that.startCountdown(timerBoxElement, { secondsLeft: timerBoxElement.data('timeLeft') });
+        const secondsLeft = timerBoxElement.data('timeLeft');
+        const onComplete = timerBoxElement.onComplete;
+        that.startCountdown(timerBoxElement, { secondsLeft, onComplete });
       });
 
       createSubElements(timerBoxElement);
