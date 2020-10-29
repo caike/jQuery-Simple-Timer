@@ -1,11 +1,13 @@
 {
   "name": "jquery-simple-timer",
-  "version": "1.0.0",
+  "version": "1.0.1",
+  "lockfileVersion": 1,
+  "requires": true,
   "dependencies": {
     "jquery": {
-      "version": "1.12.4",
-      "from": "jquery@>=1.12.4 <1.13.0",
-      "resolved": "https://registry.npmjs.org/jquery/-/jquery-1.12.4.tgz"
+      "version": "3.5.0",
+      "resolved": "https://registry.npmjs.org/jquery/-/jquery-3.5.0.tgz",
+      "integrity": "sha512-Xb7SVYMvygPxbFMpTFQiHh1J7HClEaThguL15N/Gg37Lri/qKyhRGZYzHRyLH8Stq3Aow0LsHO2O2ci86fCrNQ=="
     }
   }
 }

@@ -18,7 +18,7 @@
     "ecosystem:jquery"
   ],
   "dependencies" : {
-    "jquery": "~>1.12.4"
+    "jquery": "~>3.5.0"
   },
   "author": "Carlos Souza <carloshrsouza@gmail.com> (http://csouza.me/)",
   "license": "MIT",
